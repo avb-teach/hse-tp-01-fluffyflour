@@ -1,0 +1,27 @@
+#!/bin/bash
+
+input_dir="$1"
+output_dir="$2"
+
+safe_copy() {
+    local cont="$1"
+    local dest="$2"
+    local filename=$(basename "$cont")
+    local dist="$dest/$filename"
+    local count=1
+    
+    while [ -e "$dist" ]; do
+        name="${filename%.*}"
+        ext="${filename##*.}"
+        if [[ "$name" != "$ext" ]]; then
+            filename="${name}_${count}.${ext}"
+        else
+            filename="${name}_${count}"
+        fi
+        dist="$dest/$filename"
+        ((count++))
+    done
+    
+    cp -- "$cont" "$dist"
+}
+
