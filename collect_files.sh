@@ -23,3 +23,7 @@ mycp() {
 
    cp "$source" "$dest_path";
 }
+
+find "$1" -type f -print0 | while IFS= read -r -d $'\0' file; do
+    mycp "$file" "$2"
+done
