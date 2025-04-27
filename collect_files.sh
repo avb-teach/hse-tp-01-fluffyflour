@@ -21,6 +21,5 @@ mycp() {
         ((counter++))
     done
 
-   cp -- "$source" "$dest_path"; 
+   cp -- "$source" "$dest_path"; then
 }
-
